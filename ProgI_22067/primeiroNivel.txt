@@ -1,16 +1,16 @@
-Qual é o primeiro Gás Nobre na Tabela Periodica?
+Qual é o primeiro Gas Nobre na Tabela Periodica?
 (A) Neon
 (B) Hélio
 (C) Xénon
 (D) Árgon
 B
-Qual a forma molecular da água?
+Qual a forma molecular da agua?
 (A) C02
 (B) H20
 (C) 02
 (D) 03
 B
-Fala-se em Cuba e pensamos no país, mas é também uma localidade
+Fala-se em Cuba e pensamos no pais, mas é também uma localidade
 (A) No Alentejo
 (B) No Ribatejo
 (C) No Algarve
@@ -22,7 +22,7 @@ Qual é maior deserto do mundo?
 (C) Sahara
 (D) Deserto de Gobi
 A
-Qual é identidade secreta do super-herói Batman?
+Qual é identidade secreta do super-heroi Batman?
 (A) Peter Parker
 (B) Bruce Wayne
 (C) Clark Kent
@@ -33,3 +33,58 @@ Quem venceu a Volta a França em 2019?
 (C) Primoz Roglic
 (D) Egan Bernal
 D
+De quem é a famosa frase "Penso, logo existo"?
+(A) Platão
+(B) Galileu Galilei
+(C) Descartes
+(D) Sócrates
+C
+Qual o menor e o maior pais do mundo?
+(A) Vaticano e Rússia
+(B) Nauru e China
+(C) Mônaco e Canadá
+(D) Malta e Estados Unidos
+A
+Qual o livro mais vendido no mundo a seguir a Biblia?
+(A) O Senhor dos Anéis
+(B) Dom quixote
+(C) O Pequeno Príncipe
+(D) Ela, a Feiticeira
+B
+Quantas casas decimais tem o numero pi?
+(A) Duas
+(B) Centenas
+(C) Trilhares
+(D) Milhares
+C
+Qual a nacionalidade de Che Guevara?
+(A) Cubana
+(B) Argentina
+(C) Panamenha
+(D) Boliviana´
+B
+Qual o maior animal terrestre?
+(A) Baleia Azul
+(B) Dinossauro
+(C) Elefante Africano
+(D) Tubarão Branco
+C
+Qual o tipo de sangue das pessoas que são consideradas doadores universais?
+(A) Tipo A
+(B) Tipo B
+(C) Tipo O
+(D) Tipo AB
+C
+O que e o Brexit?
+(A) Saída do Reino Unido da Zona Euro
+(B) Saída do Reino Unido da União Europeia
+(C) Saída da Inglaterra do Reino Unido
+(D) Fim da Monarquia do Reino Unido
+B
+Qual o nome do lider da Coreia do Norte?
+(A) Pak Pong-ju
+(B) Kim Jong-un
+(C) Kim Jong-il
+(D) Moon Jae-in
+B
+

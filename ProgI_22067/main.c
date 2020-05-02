@@ -1,21 +1,29 @@
-#include<conio.h>
-#include<stdio.h>
-#include<string.h>
-#include<locale.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <conio.h>
+#include <dos.h>
+#include <windows.h>
+#include <time.h>
+#include <locale.h>
 
-int x, i, n, questaoNumero, tentativa, recebeQuestao=0, totalGanho;
+int x, i, n, questaoNumero, tentativa, recebeQuestao=0, totalGanho, contadorVidas;
 int premios[15]={25,50,125,250,500,750,1500,2500,5000,10000,16000,32000,64000,125000,250000};
-char nome[100], vidas[3];
+char nome[100], vida[3];
 
 void login(void);
 void reg(void);
 void mostraPerguntas(int nivel);
+void usarVida(char respostaCorreta, int recebeQuestao);
+void mostrarQuestoesNovamente();
+void erroFicheiro();
+void questaoErrada();
+void recebeResposta(int recebeQuestao, int nivel, char respostaCorreta);
 	
 struct utilizador{
 	char name[30];
 	char pass[30];
-	int tentativas;
-	char score[7];
 }w[99];
 
 struct niveis{
@@ -27,6 +35,10 @@ struct niveis{
 	char resposta[5]; 	
 }perguntas[15]; 		// Esta Struct Recebe os ficheiros que contem as perguntas
 						// Cada ficheiro contém 15 perguntas
+						
+FILE*primeiroNivel;
+FILE*segundoNivel;
+FILE*terceiroNivel;
 	
 int main(){
 	
@@ -35,9 +47,9 @@ int main(){
 	//Reset
 	totalGanho = 0;
 	questaoNumero = 0;
-	vidas[0] = 'X';
-	vidas[1] = 'X';
-	vidas[2] = 'X';
+	vida[0] = 'X';
+	vida[1] = 'X';
+	vida[2] = 'X';
 	
 	printf("\n\t\t\t\t\t\tBEM VINDO AO");
 	printf("\n\t\t\t\t\tQUEM QUER SER MILIONÁRIO");
@@ -65,6 +77,14 @@ int main(){
     	case 1: 
     
         login();
+        printf("\n\t\t\tBEM-VINDO À PRIMEIRA FASE DO QUEM QUER SER MILIONÁRIO");
+    	printf("\n\t\t\tNESTA FASE SERÃO 5 PERGUNTAS\n");
+    	printf("\t\t\tCUJO VALORES PARA CADA PERGUNTA É DE: \n\t\t\t1 - 25 Euros\n\t\t\t2 - 50 Euros\n\t\t\t3 - 125 Euros\n\t\t\t4 - 250 Euros\n\t\t\t5 - 500 Euros\n");
+		printf("\t\t\tPREPARADO %s ? VAMOS COMEÇAR?", nome);
+		getch();
+        primeiroPatamar();
+        segundoPatamar();
+        terceiroPatamar();
         break;
 
     case 2: 
@@ -106,7 +126,7 @@ void reg()
     char c; 
 	int z=0;
 
-    fp=fopen("Utilizadores.txt","ab+");
+    fp=fopen("Utilizadores.txt","r+");
 
     printf("\n\n\t\t\t\t\tZONA DE REGISTO");
 
@@ -225,7 +245,7 @@ void reg()
 
       int checku,checkp;
 
-      fp=fopen("Utilizadores.txt","rb");
+      fp=fopen("Utilizadores.txt","r+");
 
       printf("\n\n\t\t\t\tEFETUA O LOGIN ANTES DE JOGAR!");
 
@@ -269,8 +289,8 @@ void reg()
 
 			system("cls");
             printf("\n\n\n\t\t\tLOGIN EFETUADO COM SUCESSO!!\n");
+            fclose(fp);
 			
-			primeiroPatamar();
             break;
           }
 
@@ -306,27 +326,16 @@ void reg()
         break;
 
       }
-
       getch();
 
     }
     
-    int primeiroPatamar(){
-    	
-    	FILE *primeiroNivel;
-    	
-    	printf("\n\t\t\tBEM-VINDO À PRIMEIRA FASE DO QUEM QUER SER MILIONÁRIO");
-    	printf("\n\t\t\tNESTA FASE SERÃO 5 PERGUNTAS\n");
-    	printf("\t\t\tCUJO VALORES PARA CADA PERGUNTA É DE: \n\t\t\t1 - 25 Euros\n\t\t\t2 - 50 Euros\n\t\t\t3 - 125 Euros\n\t\t\t4 - 250 Euros\n\t\t\t5 - 500 Euros\n");
-		printf("\t\t\tPREPARADO %s ? VAMOS COMEÇAR?", nome);
-		
-		if(getch()==13){
-			
+    int primeiroPatamar(){ //Carregar as perguntas do Ficheiro primeiroNivel	
 			if((primeiroNivel = fopen("primeiroNivel.txt","r"))==NULL){
 				erroFicheiro();
 			} else {
 				while(!feof(primeiroNivel)){
-					for(x=0; x<30; x++){
+					for(x=0; x<15; x++){
 						fgets(perguntas[x].pergunta, 120, primeiroNivel);
 						fgets(perguntas[x].opcA, 70, primeiroNivel);
 						fgets(perguntas[x].opcB, 70, primeiroNivel);
@@ -336,15 +345,48 @@ void reg()
 					}
 				}
 			}
-		}
-		
 		mostraPerguntas(1); //Mostrar as Perguntas Armazenadas
 		fclose(primeiroNivel);
 	}
 	
-	int segundoPatamar(){
-		return 0;
+	int segundoPatamar(){ 
+			if((segundoNivel = fopen("segundoNivel.txt","r"))==NULL){
+				erroFicheiro();
+			} else {
+				while(!feof(segundoNivel)){
+					for(x=0; x<15; x++){
+						fgets(perguntas[x].pergunta, 120, segundoNivel);
+						fgets(perguntas[x].opcA, 70, segundoNivel);
+						fgets(perguntas[x].opcB, 70, segundoNivel);
+						fgets(perguntas[x].opcC, 70, segundoNivel);
+						fgets(perguntas[x].opcD, 70, segundoNivel);
+						fgets(perguntas[x].resposta, 70, segundoNivel);
+					}
+				}
+			}
+		mostraPerguntas(2); //Mostrar as Perguntas Armazenadas
+		fclose(segundoNivel);
 	}
+	
+		int terceiroPatamar(){ 
+			if((terceiroNivel = fopen("teceiroNivel.txt","r"))==NULL){
+				erroFicheiro();
+			} else {
+				while(!feof(segundoNivel)){
+					for(x=0; x<15; x++){
+						fgets(perguntas[x].pergunta, 120, terceiroNivel);
+						fgets(perguntas[x].opcA, 70, terceiroNivel);
+						fgets(perguntas[x].opcB, 70, terceiroNivel);
+						fgets(perguntas[x].opcC, 70, terceiroNivel);
+						fgets(perguntas[x].opcD, 70, terceiroNivel);
+						fgets(perguntas[x].resposta, 70, terceiroNivel);
+					}
+				}
+			}
+		mostraPerguntas(3); //Mostrar as Perguntas Armazenadas
+		fclose(terceiroNivel);
+	}
+	
 	
 	void mostraPerguntas(int nivel){
 		
@@ -353,8 +395,6 @@ void reg()
 		int questaoMostra[5]={-1,-1,-1,-1,-1};
 		int qu=0; //Para enviar questoes para o questaoMostra;
 		
-		
-		system("cls");
 		srand(time(NULL));
 		
 		for(contadorQuestao=0; contadorQuestao<5; contadorQuestao++){
@@ -372,16 +412,16 @@ void reg()
 			if(questaoNumero!=1){ //Este codigo nao pode aparecer logo na primeira Questão (Possiblidade de Desistir)
 				
 				printf("\n\t\t\tPretende Continuar %s ?", nome);
-				printf("\n\t\t\tA - Continuar\n\t\t\tB - Desistir e sair com %d", totalGanho);
+				printf("\n\t\t\tA - Continuar\n\t\t\tB - Desistir e sair com %d ", totalGanho);
 				
 				do {
 					
 					opc = toupper(getch()); //Função que converte uma letra miniscula em letra maiuscula
 				
-				} while(opc !="A" && opc != 'B');
+				} while(opc != 'A' && opc != 'B');
 			}
 			
-			if(opc='B'){
+			if(opc == 'B'){
 				
 				system("cls");
 				printf("\n\t\t\tOBbrigado por jogar AO QUEM QUER SER MILIONÁRIO? %s", nome);
@@ -397,20 +437,178 @@ void reg()
 				system("cls");
 				
 				if(questaoNumero!=1){
-					printf("\n\t\t\tOK %s ! Vamos então avançar para a próxima questão!\n", nome);
+					printf("\n\t\t\tOK %s ! Vamos então avançar para a próxima questão! \n", nome);
 				}
 				
 				//-------------- QUESTÕES --------------------
-				printf("\t\t\tQuestão %d\n", questaoNumero);
-				printf("%s", perguntas[recebeQuestao].pergunta);
-				printf("%s", perguntas[recebeQuestao].opcA);
-				printf("%s", perguntas[recebeQuestao].opcB);
-				printf("%s", perguntas[recebeQuestao].opcC);
-				printf("%s", perguntas[recebeQuestao].opcD);
+				printf("\t\t\tQuestão %d", questaoNumero);
+				printf("\n\t\t\t%s", perguntas[recebeQuestao].pergunta);
+				printf("\n\t\t\t%s", perguntas[recebeQuestao].opcA);
+				printf("\n\t\t\t%s", perguntas[recebeQuestao].opcB);
+				printf("\n\t\t\t%s", perguntas[recebeQuestao].opcC);
+				printf("\n\t\t\t%s", perguntas[recebeQuestao].opcD);
+				
+				depoisPerguntas:
+				printf("\n\t\t\t%s, o que voçê pretende fazer? ", nome);
+				printf("\n\t\t\tA - Responder");
+				if(questaoNumero != 15){ 
+					printf("\n\t\t\tB - Usar Ajuda");
+				}
+				
+				if(contadorVidas != 3){
+					printf("\n\t\t\tVidas restantes: %d", 3-contadorVidas);
+				} else {
+					printf("\n\t\t\tNão existem mais vidas!");
+				}
+				
+				if(questaoNumero != 1){
+							if(questaoNumero != 15){
+									printf("\n\t\t\tC - Sair com metade dos ganhos atuais.");
+								} else {
+									printf("\n\t\t\tC - Sair com metade dos ganhos atuais.");
+									}
+				do {
+						opc = toupper(getchar());
+						}while(opc != 'A' && opc != 'B' && opc != 'C');
+						goto adiante;
+					} else if(questaoNumero == 15){
+						do {
+							opc = toupper(getchar());
+						}while(opc != 'A'&& opc != 'C');
+					} else 
+						do {
+							opc = toupper(getchar());
+						} while(opc != 'A' && opc != 'B');
+						
+						adiante:
+							mostrarQuestoesNovamente();
+							if(vida[0]== 'A' && vida[1] == 'B' && vida[2] == 'C' && opc == 'B'){
+								printf("\n\t\t\tVoce já usou todas as vidas!");
+								goto depoisPerguntas;
+							}
+							
+							switch(opc){
+								case 'A': 
+									break;
+								case 'B': 
+									usarVida(*perguntas[recebeQuestao].resposta , recebeQuestao);
+									break;
+								case 'C':
+									system("cls");
+									printf("\n\t\t\tVoce decidiu desistir e ficar com metade dos ganhos atuais!");
+									switch(*perguntas[recebeQuestao].resposta){
+										case 'A':
+											printf("\n\t\t\tA respota correta era a opção A: %s", perguntas[recebeQuestao].opcA);
+											break;
+										case 'B':
+											printf("\n\t\t\tA respota correta era a opção B: %s", perguntas[recebeQuestao].opcB);
+											break;
+										case 'C':
+											printf("\n\t\t\tA respota correta era a opção C: %s", perguntas[recebeQuestao].opcC);
+											break;
+										case 'D':
+											printf("\n\t\t\tA respota correta era a opção D: %s", perguntas[recebeQuestao].opcD);
+											break;
+									}
+									
+									printf("\n\n\t\t\tGANHOU %d", totalGanho = totalGanho/2);
+									printf("\n\t\t\tOBRIGADO POR JOGAR!");
+									
+									
+									//TODO
+									// ENVIAR PARA O SCORE			
+									
+									exit(1);						
+							}
+							
+							recebeResposta(recebeQuestao, nivel, *perguntas[recebeQuestao].resposta);
+							qu++;
+					}
+				}
+				
 			}
-		}
+		
+	void recebeResposta(int recebeQuestao, int nivel, char respostaCorreta){
+		
+		char resposta;
+		int opc;
+		
+			antesResposta:
+			printf("\n\t\t\tOK! Qual é a sua resposta %s ?", nome);
+			do{
+				resposta = toupper(getch());
+			}while(resposta != 'A' && resposta != 'B' && resposta != 'C' && resposta != 'D');
+			
+			if(nivel == 2 || nivel == 3){
+				printf("n\t\t\tA sua resposta é a %c . Prentende bloquear?");
+				printf("\n\t\t\tA - Sim");
+				printf("\n\t\t\tB - Não");
+				do{
+					
+					opc = toupper(getch());
+					
+				}while(opc != 'A' && opc != 'B');
+				
+				if(opc == 'B'){
+					mostrarQuestoesNovamente();
+					goto antesResposta;
+				}
+				
+				if(opc == 'A'){
+					if(resposta == respostaCorreta){
+						system("cls");
+						printf("\n\t\t\tA sua resposta está.... CORRETA!!!");
+						totalGanho = premios[questaoNumero-1];
+					} else {
+						questaoErrada();
+					}
+				}
+			}
+			if(resposta == respostaCorreta){
+				system("cls");
+				printf("\n\t\t\tRESPOSTA CORRETA! %s !", nome);
+				totalGanho = premios[questaoNumero-1];
+			} else {
+				questaoErrada();
+			}
 	}
 	
+	void questaoErrada(){
+		system("cls");
+		printf("Upsssss, a resposta está errada!");
+		
+		switch(*perguntas[recebeQuestao].resposta){
+		case 'A':
+			printf("\n\t\t\tA respota correta era a opção A: %s", perguntas[recebeQuestao].opcA);
+			break;
+		case 'B':
+			printf("\n\t\t\tA respota correta era a opção B: %s", perguntas[recebeQuestao].opcB);
+			break;
+		case 'C':
+			printf("\n\t\t\tA respota correta era a opção C: %s", perguntas[recebeQuestao].opcC);
+			break;
+		case 'D':
+			printf("\n\t\t\tA respota correta era a opção D: %s", perguntas[recebeQuestao].opcD);
+			break;
+		}
+		
+	}
+	
+	void usarVida(char respostaCorreta, int recebeQuestao){ //Mostra as opções de ajuda
+		char opcVida;
+		printf("Escolh");
+	}
+	
+	void mostrarQuestoesNovamente(){
+				system("cls");
+		
+				printf("\t\t\tQuestão %d", questaoNumero);
+				printf("\n\t\t\t%s", perguntas[recebeQuestao].pergunta);
+				printf("\n\t\t\t%s", perguntas[recebeQuestao].opcA);
+				printf("\n\t\t\t%s", perguntas[recebeQuestao].opcB);
+				printf("\n\t\t\t%s", perguntas[recebeQuestao].opcC);
+				printf("\n\t\t\t%s", perguntas[recebeQuestao].opcD);
+	}
 	void erroFicheiro(){
 		system("cls");
 		printf("\n\n\t\tErro ao Abrir o Ficheiro!");
