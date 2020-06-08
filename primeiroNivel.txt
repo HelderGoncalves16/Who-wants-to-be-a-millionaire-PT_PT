@@ -1,8 +1,8 @@
-Qual é o primeiro Gas Nobre na Tabela Periodica?
+Qual e o primeiro Gas Nobre na Tabela Periodica?
 (A) Neon
-(B) Hélio
-(C) Xénon
-(D) Árgon
+(B) Helio
+(C) Xenon
+(D) Argon
 B
 Qual a forma molecular da agua?
 (A) C02
@@ -10,45 +10,46 @@ Qual a forma molecular da agua?
 (C) 02
 (D) 03
 B
-Fala-se em Cuba e pensamos no pais, mas é também uma localidade
+Fala-se em Cuba e pensamos no pais, mas e tambem uma localidade em
 (A) No Alentejo
 (B) No Ribatejo
 (C) No Algarve
 (D) No Douro Litoral
 A
-Qual é maior deserto do mundo?
+Qual e maior deserto do mundo?
 (A) Antartida
-(B) Deserto da Arábia
+(B) Deserto da Arabia
 (C) Sahara
 (D) Deserto de Gobi
 A
-Qual é identidade secreta do super-heroi Batman?
+Qual e identidade secreta do super-heroi Batman?
 (A) Peter Parker
 (B) Bruce Wayne
 (C) Clark Kent
 (D) Dick Grayson
-Quem venceu a Volta a França em 2019?
+B
+Quem venceu a Volta a Franca em 2019?
 (A) Christopher Froome
 (B) Julian Alaphilippe
 (C) Primoz Roglic
 (D) Egan Bernal
 D
-De quem é a famosa frase "Penso, logo existo"?
-(A) Platão
+De quem e a famosa frase "Penso, logo existo"?
+(A) Platao
 (B) Galileu Galilei
 (C) Descartes
-(D) Sócrates
+(D) Socrates
 C
 Qual o menor e o maior pais do mundo?
-(A) Vaticano e Rússia
+(A) Vaticano e Russia
 (B) Nauru e China
-(C) Mônaco e Canadá
+(C) Monaco e Canada
 (D) Malta e Estados Unidos
 A
 Qual o livro mais vendido no mundo a seguir a Biblia?
-(A) O Senhor dos Anéis
+(A) O Senhor dos Aneis
 (B) Dom quixote
-(C) O Pequeno Príncipe
+(C) O Pequeno Principe
 (D) Ela, a Feiticeira
 B
 Quantas casas decimais tem o numero pi?
@@ -61,24 +62,24 @@ Qual a nacionalidade de Che Guevara?
 (A) Cubana
 (B) Argentina
 (C) Panamenha
-(D) Boliviana´
+(D) Boliviana
 B
 Qual o maior animal terrestre?
 (A) Baleia Azul
 (B) Dinossauro
 (C) Elefante Africano
-(D) Tubarão Branco
+(D) Tubarao Branco
 C
-Qual o tipo de sangue das pessoas que são consideradas doadores universais?
+Qual tipo de sangue das pessoas que sao consideradas doadores universais?
 (A) Tipo A
 (B) Tipo B
 (C) Tipo O
 (D) Tipo AB
 C
 O que e o Brexit?
-(A) Saída do Reino Unido da Zona Euro
-(B) Saída do Reino Unido da União Europeia
-(C) Saída da Inglaterra do Reino Unido
+(A) Saida do Reino Unido da Zona Euro
+(B) Saida do Reino Unido da Uniao Europeia
+(C) Saida da Inglaterra do Reino Unido
 (D) Fim da Monarquia do Reino Unido
 B
 Qual o nome do lider da Coreia do Norte?
@@ -87,4 +88,3 @@ Qual o nome do lider da Coreia do Norte?
 (C) Kim Jong-il
 (D) Moon Jae-in
 B
-
