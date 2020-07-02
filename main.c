@@ -471,14 +471,14 @@ void mostraPerguntas(int nivel) {
 
   char opc;
   int contadorQuestao; // Numero Total de Questões por nível
-  int questaoMostra[5] = {
+  int questaoMostra[5] = { // Questao usada neste momento
     -1,
     -1,
     -1,
     -1,
     -1
   };
-  int qu = 0; //Para enviar questoes para o questaoMostra;
+  int qu = 0; //Para ligar questoes para o questaoMostra;
 
   system("cls");
   srand(time(NULL));
@@ -488,7 +488,7 @@ void mostraPerguntas(int nivel) {
 
     do {
 
-      recebeQuestao = (rand() % 15); //Gera um numero Random até 15
+      recebeQuestao = (rand() % 15); //Gera um numero Random até 15 || 
 
     } while (recebeQuestao == questaoMostra[0] || recebeQuestao == questaoMostra[1] || recebeQuestao == questaoMostra[2] || recebeQuestao == questaoMostra[3] || recebeQuestao == questaoMostra[4]);
 
